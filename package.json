@@ -1,0 +1,17 @@
+{
+  "name": "sistema-di-gestione-delle-risorse-umane",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc --noEmit && tsc --outDir build",
+    "start": "node build/index.js",
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "@types/express": "^4.17.21"
+  }
+}

@@ -1,4 +1,6 @@
 import express, { Request, Response } from "express";
+import { config } from 'dotenv';
+import { getDb } from "./db";
 
 const app = express();
 const server = express.json();
@@ -7,9 +9,29 @@ const baseURL = process.env.BASE_URL || "http://localhost";
 
 app.use(server);
 
-app.get("/", function (req: Request, res: Response) {
-  return res.status(200).send("Server is running...");
+app.use((req, res, next) => {
+  console.log('Corpo Grezzo:', req.body);
+  next();
 });
+
+
+
+
+
+async function initializeDatabase() {
+  const db = await getDb();
+  await db.exec(`
+    
+  `);
+}
+
+initializeDatabase();
+
+
+
+
+
+
 
 app.listen(port, function () {
   console.log(`Server is running on ${baseURL}:${port}`);

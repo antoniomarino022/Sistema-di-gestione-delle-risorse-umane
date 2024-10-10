@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { config } from 'dotenv';
 import { getDb } from "./db";
+import routerEmployees from "./routers/routerEmployees";
+
 
 const app = express();
 const server = express.json();
@@ -19,6 +21,7 @@ app.use((req, res, next) => {
 async function initializeDatabase() {
   const db = await getDb();
   await db.exec(`
+
 CREATE TABLE IF NOT EXISTS employees (
     id TEXT PRIMARY KEY NOT NULL,
     name TEXT NOT NULL,
@@ -84,17 +87,18 @@ CREATE TABLE IF NOT EXISTS personal_data (
     FOREIGN KEY (employee_id) REFERENCES employees(id)  
 );
 
+ 
   `);
 }
 
+
+
 initializeDatabase();
 
+app.use('/employees', routerEmployees); 
 
 
 
-
-
-
-app.listen(port, function () {
+app.listen(port,  ()=> {
   console.log(`Server is running on ${baseURL}:${port}`);
 });

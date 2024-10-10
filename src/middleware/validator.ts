@@ -1,31 +1,46 @@
 import validator from 'validator';
-import PasswordValidator from 'password-validator';
+import { validate as uuidValidate } from 'uuid';
 
-// Definizione dello schema della password
-const passwordSchema = new PasswordValidator();
-passwordSchema
-  .is().min(8)                              // Lunghezza minima di 8 caratteri
-  .has().uppercase()                       // Deve contenere almeno una lettera maiuscola
-  .has().lowercase()                       // Deve contenere almeno una lettera minuscola
-  .has().digits()                          // Deve contenere almeno un numero
-  .not().spaces();                         // Non deve contenere spazi
-
-// Funzione per validare lo username
- function validateUsername(username: string){
-  return username && validator.isAlphanumeric(username) && username.length >= 3 && username.length <= 20;
+function validateId(id:string){
+  return uuidValidate(id)
 }
 
-// Funzione per validare l'email
+function validateName(name: string) {
+  return name && validator.isAlphanumeric(name) && name.length >= 3 && name.length <= 20;
+}
+
+function validatePosition(position:string){
+  return position 
+}
+
 function validateEmail(email: string) {
   return email && validator.isEmail(email);
 }
 
-// Funzione per validare la password
- function validatePassword(password: string){
-  // Verifica che schema.validate restituisca un booleano
-  return passwordSchema.validate(password);
+function validatePhone(phone: string) {
+  return phone && validator.isNumeric(phone) && phone.length === 9;
+}
+
+function validateDate(date: Date): boolean {
+  return !isNaN(new Date(date).getTime());
+}
+
+
+function validateSalary(salary: number) {
+  return typeof salary === 'number' && salary > 0;
+}
+
+function validateStatus(status: "active" | "inactive") {
+  return status === "active" || status === "inactive";
 }
 
 export {
-
-}
+  validateId,
+  validateName,
+  validatePosition,
+  validateEmail,
+  validatePhone,
+  validateDate,
+  validateSalary,
+  validateStatus
+};

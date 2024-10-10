@@ -1,1 +1,43 @@
+###create employee
+POST http://localhost:3000/employees
+Content-Type:application/json
+
+{ 
+    "name": "anto",
+    "position": "recruiter",
+    "salary": 57.33,
+    "email": "antonio464@gmail.it",
+    "phone": "123456789",
+    "hire_date": "2023-11-11",  
+    "employment_status": "active"
+
+}
+
+
+
+
+### delete employee
+
+DELETE http://localhost:3000/employees/2df08231-e8f3-4f35-8a6f-c8eda2cf302f
+Content-Type:application/json
+
+
+
+
+### update employee
+
+PUT http://localhost:3000/employees/2df08231-e8f3-4f35-8a6f-c8eda2cf302f
+Content-Type:application/json
+
+{ 
+    "name": "antonio",
+    "position": "manager",
+    "salary": 57.33,
+    "email": "antonio464@gmail.it",
+    "phone": "123456789",
+    "hire_date": "2023-11-11",  
+    "employment_status": "active"
+
+}
+
 
